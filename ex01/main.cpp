@@ -1,57 +1,48 @@
+#include <iostream>
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
 
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"
+#define RED     "\033[31m"
 
 int main()
 {
-    Animal* hayvan = new Animal();
-    hayvan->getType();
-    hayvan->makeSound();
-    delete hayvan;
-
-    std::cout << "\n---------------------------\n" << std::endl;
-
-    Animal* hayvan1 = new Dog();
-    hayvan1->getType();
-    hayvan1->makeSound();
-    delete hayvan1;
-    std::cout << "\n---------------------------\n" << std::endl;
+    std::cout << GREEN << "\n=== TEST 1: ARRAY OF ANIMALS ===" << RESET << std::endl;
     
-    Animal* hayvan2 = new Cat();
-    hayvan2->getType();
-    hayvan2->makeSound();
+    int size = 4;
+    Animal* animals[size];
 
-    delete hayvan2;
+    for (int i = 0; i < size; i++)
+    {
+        if (i % 2 == 0)
+            animals[i] = new Dog();
+        else
+            animals[i] = new Cat();
+    }
+
+    std::cout << "\nDELETING ARRAY..." << std::endl;
+    for (int i = 0; i < size; i++)
+        delete animals[i];
+
+    std::cout << GREEN << "\n=== TEST 2: DEEP COPY CHECK ===" << RESET << std::endl;
+
+    std::cout << "CREATING ORIGINAL DOG..." << std::endl;
+    Dog* original = new Dog();
     
-    std::cout << "\n---------------------------\n" << std::endl;
+    std::cout << "CREATING COPY DOG..." << std::endl;
+    Dog* copy = new Dog(*original);
 
-    Animal* beyin = new Dog();
-    
-    Dog dog;
-    dog.setIdea(0, "Rasit");
+    std::cout << RED << "DELETING ORIGINAL DOG..." << RESET << std::endl;
+    delete original;
 
-    std::cout << dog.getIdeas(0) << std::endl; 
+    std::cout << "CHECKING COPY DOG (SHOULD SURVIVE): " << std::endl;
+    copy->makeSound();
 
-    beyin->getType();
-    beyin->makeSound();
-    delete beyin;
-    std::cout << "\n---------------------------\n" << std::endl;
-    
+    std::cout << "DELETING COPY DOG..." << std::endl;
+    delete copy;
 
-    Cat cat;
-    cat.setIdea(0, "Hello");
-    std::cout << cat.getIdeas(0) << std::endl;
-
-    std::cout << "\n---------------------------\n" << std::endl;
-
-
-
-
-
-    std::cout << "\n---------------------------\n" << std::endl;
-
-
-
+    return 0;
 }

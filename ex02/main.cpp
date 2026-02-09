@@ -4,59 +4,41 @@
 #include "Dog.hpp"
 #include "Brain.hpp"
 
+#define RESET   "\033[0m"
+#define GREEN   "\033[32m"
+#define RED     "\033[31m"
 
 int main()
 {
+    std::cout << GREEN << "\n=== TEST 1: ABSTRACT CLASS TEST ===" << RESET << std::endl;
+    std::cout << "I CANNOT CREATE AANIMAL. SO I CREATE DOG AND CAT." << std::endl;
+
     const AAnimal* j = new Dog();
     const AAnimal* i = new Cat();
 
-    std::cout << j->getType() << " " << std::endl;
-    std::cout << i->getType() << " " << std::endl;
+    std::cout << "\nCHECKING SOUNDS:" << std::endl;
+    j->makeSound();
+    i->makeSound();
 
     delete j;
     delete i;
 
-    std::cout << "\n---------------------------\n" << std::endl;
+    std::cout << GREEN << "\n=== TEST 2: DEEP COPY TEST ===" << RESET << std::endl;
 
-    AAnimal* hayvanlar[4];
-
-    for (int k = 0; k < 4; k++)
-    {
-        if (k % 2 == 0)
-            hayvanlar[k] = new Dog();
-        else
-            hayvanlar[k] = new Cat();
-    }
-
-    for (int k = 0; k < 4; k++)
-    {
-        hayvanlar[k]->makeSound();
-        delete hayvanlar[k];
-    }
-
-    std::cout << "\n---------------------------\n" << std::endl;
-
-    Dog* kopek = new Dog();
-     
-
-    Dog* kopyaKopek = new Dog(*kopek);
-
-    delete kopek;
-
-    std::cout << "Kopya hala yasiyor mu? ";
-    kopyaKopek->makeSound();
-
-    delete kopyaKopek;
-
-    std::cout << "\n---------------------------\n" << std::endl;
-
-    AAnimal* rasit = new Dog();
+    std::cout << "CREATING ORIGINAL DOG..." << std::endl;
+    Dog* dog1 = new Dog();
     
-    rasit->getType();
-    rasit->makeSound();
+    std::cout << "CREATING COPY DOG..." << std::endl;
+    Dog* dog2 = new Dog(*dog1);
 
-    delete rasit;
+    std::cout << RED << "DELETING ORIGINAL DOG..." << RESET << std::endl;
+    delete dog1;
 
+    std::cout << "IS COPY STILL ALIVE? SPEAK COPY!" << std::endl;
+    dog2->makeSound();
+
+    std::cout << "DELETING COPY..." << std::endl;
+    delete dog2;
 
     return 0;
 }
