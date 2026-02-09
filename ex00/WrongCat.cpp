@@ -21,6 +21,6 @@ WrongCat::~WrongCat(){
     std::cout << "WrongCat Destroyed!" << std::endl;
 }
 
-void WrongCat::makeSound(){
+void WrongCat::makeSound() const{
     std::cout << _type << " cannot say anything because it does not speak!" << std::endl;
 }

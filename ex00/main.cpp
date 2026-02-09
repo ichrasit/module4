@@ -1,77 +1,49 @@
+#include <iostream>
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-
 #include "WrongAnimal.hpp"
-
 #include "WrongCat.hpp"
+
 int main()
 {
-    Animal* hayvan = new Animal();
-    hayvan->getType();
-    hayvan->makeSound();
+    const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
 
-    std::cout << "--------------------" << std::endl;
+    std::cout << j->getType() << " " << std::endl;
+    std::cout << i->getType() << " " << std::endl;
 
-    Dog* kopek = new Dog(); 
+    i->makeSound();
+    j->makeSound();
+    meta->makeSound();
 
-    kopek->getType();
-    kopek->makeSound();
+    delete j;
+    delete i;
+    delete meta;
 
-    std::cout << "--------------------" << std::endl;
+    std::cout << "------------------------------------------------" << std::endl;
 
-    Cat* kedi = new Cat();
-    
-    kedi->getType();
-    kedi->makeSound();
+    const WrongAnimal* yanlis = new WrongAnimal();
+    const WrongAnimal* yanlisKedi = new WrongCat();
 
-    std::cout << "--------------------" << std::endl;
-
-
-    WrongAnimal* yanlis = new WrongAnimal();
-    yanlis->getType();
     yanlis->makeSound();
+    yanlisKedi->makeSound();
 
-    WrongAnimal* yanliskedi = new WrongCat();
-    yanliskedi->getType();
-    yanliskedi->makeSound();
+    delete yanlis;
+    delete yanlisKedi;
 
+    std::cout << "------------------------------------------------" << std::endl;
 
-    std::cout << "\n---------Test With Not Pointer---------" << std::endl;
+    Dog* kopek = new Dog();
+    Dog* kopyaKopek = new Dog(*kopek);
 
-    Animal animal;
-    animal.getType();
-    animal.makeSound();
+    delete kopek;
 
-    std::cout << "--------------------" << std::endl;
+    std::cout << "Kopya hala yasiyor mu? ";
+    kopyaKopek->makeSound();
 
+    delete kopyaKopek;
 
-    Cat cat;
-    cat.getType();
-    cat.makeSound();
-
-    std::cout << "--------------------" << std::endl;
-
-    Dog dog;
-    dog.getType();
-    dog.makeSound();
-
-    std::cout << "--------------------" << std::endl;
-
-    WrongAnimal wrong;
-    wrong.getType();
-    wrong.makeSound();
-
-    std::cout << "--------------------" << std::endl;
-
-    WrongCat catwrong;
-    catwrong.getType();
-    catwrong.makeSound();
-
-
-    std::cout << "--------------------" << std::endl;
-
-
-
-
+    return 0;
 }

@@ -21,7 +21,7 @@ WrongAnimal::~WrongAnimal(){
     std::cout << "WrongAnimal Destroyed!" << std::endl;
 }
 
-void WrongAnimal::makeSound(){
+void WrongAnimal::makeSound() const{
     std::cout << _type << " says: I am WrongAnimal" << std::endl;
 }
 

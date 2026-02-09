@@ -16,7 +16,7 @@ class Animal{
 
         virtual void makeSound() const; // Animal sounds bastiracak
 
-        std::string getType(); // type dondurecek
+        std::string getType()  const; // type dondurecek
         
 };
 
