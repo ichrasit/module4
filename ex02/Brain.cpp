@@ -13,6 +13,7 @@ Brain::Brain(const Brain &other){
 Brain& Brain::operator=(const Brain &other){
     if (this != &other){
         for(int i = 0; i < 100; i++)
+        
             this->ideas[i] = other.ideas[i];
     }
     std::cout << "Brain Copy Assignment Operator Created!" << std::endl;
